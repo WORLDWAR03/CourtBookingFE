@@ -1,0 +1,7 @@
+.welcome{
+    background-image:linear-gradient(to left, rgba(0,0,0,0),rgba(0,0,0,0.7)), url(../../assets/basketball.jpg);
+    object-fit: contain;
+    background-size: cover;
+    
+    
+}

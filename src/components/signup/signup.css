@@ -1,0 +1,5 @@
+.formInput{
+    background-image: url(../../assets/basketball.jpg);
+    object-fit: contain;
+    background-size: cover;
+}
