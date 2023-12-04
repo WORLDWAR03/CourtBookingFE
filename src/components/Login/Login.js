@@ -7,6 +7,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { setUser } from '../../redux/userSlice'
 import { useDispatch } from 'react-redux'
+import Swal from 'sweetalert2'
 
 function Login({setBoxName}) {
 
@@ -60,8 +61,24 @@ function Login({setBoxName}) {
                     alert("login failed")
                 }
                 
+        }).catch(res=>{
+            Swal.fire({
+                icon: "question",
+                text: "Enter Valid Email and Password!",
+                confirmButtonColor: '#2d6a4f',
+                background: '#d8f3dc'
+              });
         })
-        } catch (error) {
+
+        } catch (res) {
+
+
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: '<a href="#">Why do I have this issue?</a>'
+              });
             
         }
        
@@ -74,7 +91,7 @@ function Login({setBoxName}) {
    
   return (
    <section className='logo min-h-screen flex items-center justify-center '>
-  
+s  
   <div className='bg-[#d8f3dc] flex rounded-2xl shadow-lg max-w-3xl p-5 items-center'> 
 
    <div className='md:w-1/2 px-16'>

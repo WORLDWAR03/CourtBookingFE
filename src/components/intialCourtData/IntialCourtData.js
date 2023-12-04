@@ -1,13 +1,20 @@
 import { React, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import AxiosInstance from "../../../config/axiosInstance";
-import { BASEURL } from "../../../Constants/baseUrl";
+import { useNavigate, useParams } from "react-router-dom";
+import AxiosInstance from "../../config/axiosInstance";
+import { BASEURL } from "../../Constants/baseUrl";
 import "./intialCourtData.css";
-import Navigation from "../../navigation/Navigation";
-import Modal from "../modal/Modal";
+import Navigation from "../navigation/Navigation";
+
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
-import { TIMINGS } from "../../../Constants/baseUrl";
+import { TIMINGS } from "../../Constants/baseUrl";
 import Swal from "sweetalert2";
+import Modal from "../common/modal/Modal";
+import NewModal from "../common/modal/NewModal";
+import { useDispatch} from "react-redux";
+import {setOpenLoader} from '../../redux/userSlice'
+import Loader from "../loader/Loader";
+
+
 
 function IntialCourtData() {
   const [filterTimings, setFilterTimings] = useState(TIMINGS);
@@ -16,6 +23,8 @@ function IntialCourtData() {
   const [selectedTimings, setSelectedTimings] = useState([]);
   const [intialDate,setIntialDate]= useState(new Date())
   const [minEndDate,setMinEndDate]= useState()
+  const navigate =useNavigate()
+
   const [costData,setCostData]= useState({
     cost:'',
   });
@@ -24,14 +33,24 @@ function IntialCourtData() {
     endDate: "",
   });
 
+  const dispatch = useDispatch()
+
   useEffect(()=>{
-    AxiosInstance.get('/users/getUpdatedDate',{params:{courtId:id}}).then((res)=>{
-      let latestDate=new Date(res.data.startingDate)
-      latestDate.setDate(latestDate.getDate()+1);
-      
-      setIntialDate(latestDate.toISOString().split('T')[0])
-      
+    dispatch(setOpenLoader(true))
+    AxiosInstance.get('/vender/getUpdatedDate',{params:{courtId:id}}).then((res)=>{
+      if(res.data.startingDate){
+        let latestDate=new Date(res.data.startingDate)
+        latestDate.setDate(latestDate.getDate()+1);
+        
+        setIntialDate(latestDate.toISOString().split('T')[0])
+      }
+      else{
+        setIntialDate(new Date().toISOString().split('T')[0])
+      }
+      dispatch(setOpenLoader(false))
+
     })
+    
   },[]);
 
   useEffect(()=>{
@@ -41,7 +60,7 @@ function IntialCourtData() {
    }else{
     setMinEndDate(intialDate)
    }
-  },[courtTiming.startDate,intialDate]);
+  },[courtTiming.startDate,intialDate,]);
 
 
   const addNewTime = (element, index) => {
@@ -79,7 +98,7 @@ function IntialCourtData() {
   console.log(id);
   useEffect(() => {
     try {
-      AxiosInstance.get("/users/getSigleCourtViewData", {
+      AxiosInstance.get("vender/getSigleCourtViewData", {
         params: { courtId: id },
       })
         .then((resp) => {
@@ -102,7 +121,7 @@ function IntialCourtData() {
       
   AxiosInstance({
     method:'post',
-    url:'/users/addCourtTiming',
+    url:'/vender/addCourtTiming',
     data:{
      dates:courtTiming,
      schedules:selectedTimings,
@@ -117,6 +136,7 @@ function IntialCourtData() {
     showConfirmButton: false,
     timer: 2000
   });
+  navigate('/myCourts') 
 
 })
 
@@ -141,22 +161,36 @@ function IntialCourtData() {
       <div className="wrapper ">
         <div className="headers relative">
           <img
-            className="picture"
+            className="picture w-screen h-screen"
             src={BASEURL + "/venderImages/" + sigleViewData?.data?.image}
-          />
+         />
+        
           <div className="banner-text absolute ">
-            <h1 className="text-6xl font-semibold">
+            <h1 className="text-6xl pb-2 font-semibold">
               {sigleViewData?.data?.businessName}
             </h1>
             <p className="">{sigleViewData?.data?.aboutVenue}</p>
           </div>
         </div>
+      
 
-        <div className="aside aside1 w-full"></div>
+        <div className="footer bg-[#2c6e49] items-center flex">
+          <div className="text bg-[#2c6e49] items-center  w-[4/5]">
+            
+            <h3 className="text-white pb-2 text-2xl font-medium pl-5">create schedules and host your courts with our scheduler
+              </h3>
+            <ul className="list-disc pl-10">
+                  <li className="list-disc ">Create unlimited Sports schedules</li>
+                  <li className="list-disc ">Share your schedule publicly</li>
+                  <li className="list-disc ">Set dates, times, and the duration of games</li>
 
-        <div className="footer bg-[#2c6e49]">
-          <div className="text bg-[#2c6e49]">set schedules for players</div>
-          <div className="modal bg-[#2c6e49]">
+
+            </ul>
+           </div>
+            
+          
+          <div className="modal w-[1/5] bg-[#2c6e49] ">
+          
             <Modal data={sigleViewData}>
               <div>
                 <div className="px-7 overflow-y-auto">
@@ -168,7 +202,7 @@ function IntialCourtData() {
                     onChange={(e) =>
                       setCourtTiming({
                         ...courtTiming,
-                        startDate: new Date(e.target.value),
+                        startDate: new Date(e.target.value,),
                       })
 
                     }
@@ -270,14 +304,17 @@ function IntialCourtData() {
                     onClick={addCourtTimings}
                     className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-[#2c6e49] text-white hover:bg-[#276040] focus:outline-none focus:ring-2  focus:ring-offset-2 transition-all text-sm  "
                   >
-                    Save changes
+                    Create Schedule
                   </button>
                 </div>
               </div>
             </Modal>
           </div>
         </div>
+
+
       </div>
+      {} <Loader/>
     </>
   );
 }

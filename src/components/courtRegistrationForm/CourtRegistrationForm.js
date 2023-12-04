@@ -3,6 +3,8 @@ import red from "../../assets/shake.jpg";
 import axios, { Axios } from "axios";
 import AxiosInstance from "../../config/axiosInstance";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 
 
 function CourtRegistrationForm() {
@@ -22,6 +24,7 @@ function CourtRegistrationForm() {
     setCourtPic({ file: e.target.files[0] });
   };
 
+  const navigate=useNavigate()
   const handleSave = () => {
     try {
       console.log(registerData, "registerData");
@@ -30,13 +33,20 @@ function CourtRegistrationForm() {
       fileData.append("image", courtPic.file);
 
       AxiosInstance.post(
-        "/users/register-court",
+        "/vender/register-court",
         fileData,
         { params: registerData },
         { headers: { "Content-Type": "multipart/form-data" } }
       )
         .then((res) => {
-          alert(res.data.message);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Court Registred Successfully",
+            showConfirmButton: false,
+            timer: 2000
+          });;
+          navigate('/myCourts')
         })
         .catch((res) => {
         
@@ -44,7 +54,10 @@ function CourtRegistrationForm() {
           icon: "error",
           title: "Oops...",
           text: "All Field Is Required!",
-          footer: '<a href="#">Why do I have this issue?</a>'
+          showConfirmButton: true,
+          confirmButtonText:'ok',
+          confirmButtonColor: '#d33'
+          
         });
         }
         );

@@ -5,24 +5,29 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import {Menu, Transition} from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Fragment } from 'react'
+import { useSelector } from 'react-redux';
 
 
 
 function classNames(...classes) {
+
+
   return classes.filter(Boolean).join(' ')
 }
 
 function MenuItems({showMenu, active}) {
 
+  const {user}=useSelector((state)=>state.user)
   return (
     <div className={active ? 'flex-col flex items-center fixed inset-0 left-1/4  uppercase bg-black/40 backdrop-blur-md gap-8 justify-center md:hidden ':'hidden'} >
 
        <FontAwesomeIcon icon={faXmark} className='text-white h-6 cursor-pointer' onClick={showMenu}/>
          <ul className="nav_menu uppercase " >
         <li className='nav_item pb-2'>
-          <a href=''>
+        <Link to={'/home'} > <a href=''>
             <span area-hidden="true"></span>Home
           </a>
+        </Link>
         </li>
         <li className='nav_item pb-2'>
           <a href="" className='nav_link'>
@@ -46,6 +51,22 @@ function MenuItems({showMenu, active}) {
             <span aria-hidden="true"></span>Learn
           </a>
         </li>
+
+        {user.role ===2 &&  <li className='nav_item pb-2'>
+          <Link to={'/myCourts'}>
+        <a href="" className='nav_link'>
+            Mycourt
+          </a>
+          </Link>
+        </li>}
+
+ {user.role===2 && <li className='nav_item pb-2'>
+ <Link to={'/courtRegistration'}> <a  className='nav_link cursor-pointer'>
+
+          partner-with-us</a>
+          </Link>
+        </li> }
+        
 
         
         <Menu as="div" className="relative inline-block text-left">

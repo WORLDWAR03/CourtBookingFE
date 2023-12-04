@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './signup.css'
 import red from '../../assets/Red.jpeg'
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 
 function Signup({setBoxName}) {
@@ -17,21 +18,25 @@ function Signup({setBoxName}) {
   }
 
 const [login ,setLogin]=useState(obj)
-useEffect(()=>{
-  console.log(login);
 
-},[login])
 
 const handleSignUp=()=>{
-  axios.post('http://localhost:8080/auth/register',login).then((res)=>{
+  try {
+    axios.post('http://localhost:8080/auth/register',login).then((res)=>{
     
-   if (res.data.signup){
-    setBoxName('login')
-   }else{
-    alert('signup failed')
-   };  }
-  )
+    if (res.data.signup){
+     setBoxName('login')
+    }else{
+     alert('signup failed')
+    };  }
+   )
+   
+  } catch (res) {
+    
+    
+  }
 }
+
 
 const [errors, setErrors] = useState({})
 
@@ -63,7 +68,23 @@ if(login.password2 !== login.password){
 
 setErrors(validationErrors)
 if(Object.keys(validationErrors).length === 0){
-  alert("form Submitted successfully")
+  
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+  Toast.fire({
+    icon: "success",
+    title: "Signed in successfully"
+  });
 }
 
 }

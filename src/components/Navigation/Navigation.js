@@ -31,7 +31,7 @@ function Navigation() {
   
   
   return (
-    <div className='pb-' >
+    <div className='z-10' >
     <nav className='nav fixed bg-[#1b4332]  w-full md:flex justify-between p-4 mb-48 items-center'>
       <a href='' className='brand text-2xl font-bold text-center block'>PLEY</a>
       

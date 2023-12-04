@@ -1,14 +1,17 @@
-import React, { Children } from 'react'
+import React from 'react'
+
+
 
 function Modal({children}) {
   return (
-    <div>
-        <button type="button" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-[#fff] text-[#2c6e49] hover:bg-[#E5E5E5] focus:outline-none focus:ring-2 focus:ring-[#192f27] focus:ring-offset-2 transition-all text-sm dark:focus:ring-[#081c15] offset-gray-800" data-hs-overlay="#hs-focus-management-modal">
-  Open modal
-</button>
+    <div >
+<button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-[#21543f] text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-hs-overlay="#hs-focus-management-modal">
+Schedule Maker
+</button>  
 
-<div id="hs-focus-management-modal" className="hs-overlay hidden w-full h-full fixed top-60 left-0 z-[60] overflow-x-hidden overflow-y-auto">
-  <div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
+
+<div id="hs-focus-management-modal"  className="hs-overlay hidden w-full h-full fixed top-60 left-0 z-[60] overflow-x-hidden overflow-y-auto">
+  <div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto overflow-y-auto">
     <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-white  dark:shadow-slate-700/[.7]">
       <div className="flex justify-between items-center py-2 px-4  ">
         <h3 className="font-bold text-gray-500">
@@ -45,5 +48,10 @@ function Modal({children}) {
     </div>
   )
 }
+
+
+
+
+
 
 export default Modal

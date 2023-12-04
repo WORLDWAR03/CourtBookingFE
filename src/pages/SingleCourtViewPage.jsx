@@ -1,7 +1,7 @@
 import React from 'react'
-import SigleCourtView from '../components/common/intialCourtData/IntialCourtData'
+import SigleCourtView from '../components/intialCourtData/IntialCourtData'
 import Navigation from '../components/navigation/Navigation'
-import IntialCourtData from '../components/common/intialCourtData/IntialCourtData'
+import IntialCourtData from '../components/intialCourtData/IntialCourtData'
 import ScheduleTable from '../components/table/ScheduleTable'
 import Modal from '../components/common/modal/Modal'
  

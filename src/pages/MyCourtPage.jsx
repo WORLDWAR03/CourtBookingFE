@@ -2,15 +2,21 @@ import React, { useEffect, useState } from 'react'
 import Navigation from '../components/navigation/Navigation'
 import CourtCard from '../components/courtCards/CourtCard'
 import AxiosInstance from '../config/axiosInstance'
+import Loader from '../components/loader/Loader'
+import { useDispatch } from 'react-redux'
+import { setOpenLoader } from '../redux/userSlice'
 
 function MyCourtPage() {
 
   const [courtData,setCourtData]=useState([])
+  const dispatch = useDispatch()
 
  useEffect(()=>{
   try {
-    AxiosInstance.get('/users/getMyCourtData').then((response)=>{
+    
+    AxiosInstance.get('/vender/getMyCourtData').then((response)=>{
       setCourtData(response.data.data)
+
     }).catch((err)=>{
       console.log(err);
     })
@@ -18,7 +24,7 @@ function MyCourtPage() {
     console.log(error);
   }
 
- },[courtData])
+ },[])
 
 
 
@@ -27,12 +33,14 @@ function MyCourtPage() {
 
 
         <Navigation />
-        <div className=' sm:grid-cols-1 pt-20 bg-[#2c6e49]'>
+        <div className=' sm:grid-cols-1 z-0  pt-36 bg-[#fff]'>
 
         {courtData.map(court=>
          <CourtCard key={court._id} data={court}/>
                        )}
        </div>
+
+       <Loader/>
     </>
   )
 }

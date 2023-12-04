@@ -11,7 +11,7 @@ function CourtCard({data}) {
   return (
 
 
- <div className=' mx-auto max-w-md bg:center gap-4  py-8 justify-center grid  md:grid-cols-1 place-items-center align-middle cursor-pointer  md:max-w-6xl bg-[#2c6e49]'>
+ <div className=' mx-auto max-w-md bg:center gap-4  py-8 justify-center grid  md:grid-cols-1 place-items-center align-middle cursor-pointer  md:max-w-6xl bg-[#fff'>
     
    
 

@@ -2,6 +2,7 @@ import axios from "axios";
 import { BASEURL } from "../Constants/baseUrl";
 
 const AxiosInstance =axios.create({
+
     baseURL: BASEURL
 })
 
