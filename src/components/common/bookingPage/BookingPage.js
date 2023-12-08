@@ -5,6 +5,7 @@ import AxiosInstance from '../../../config/axiosInstance'
 import { BASEURL } from '../../../Constants/baseUrl'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShareFromSquare } from '@fortawesome/free-solid-svg-icons'
+import {faCircleCheck} from '@fortawesome/free-solid-svg-icons'
 import { useParams } from 'react-router-dom'
 import Button from '../../button/Button'
 import Swal from 'sweetalert2'
@@ -65,13 +66,13 @@ function BookingPage() {
     <>
     
 
-    <div className=' md:flex flex-col min-h-screen  w-100% '>
+    <div className=' md:flex flex-col  w-100% '>
         <div  className='nav' >
           <Navigation /> 
         </div>
           
 
-        <div className=' sm:flex flex-row h-[800px] '>
+        <div className=' sm:flex flex-row  '>
                 <div className='flex flex-col basis-2/3 bg-white '>
                       <div className=' h-[100px] w-3/4 mt-5  mx-6  items-center'>
                          <p className='text-gray-600 py-2'>{courtData.location}</p>
@@ -80,15 +81,28 @@ function BookingPage() {
                       <div className='img max-h-[600px]  mx-6 mt-5 '>
                          <img className='max-h-[90%] rounded w-[95%]' src={`${BASEURL}/venderImages/${courtData.image}`}/>
                       </div>
-                      <div className='img h-[200px] mx-6 my-2 border border-black '>
-                         
-                      </div>
-                      <div className='img h-[200px] mx-6 my-4 border border-black '>
-    
-                      </div>
-                      <div className='img h-[200px] mx-6 my-4 border border-black '>
-    
-                      </div>
+                      <div className=" flex flex-col ">
+    <div className='h-[150px] mx-6 my-2 p-3 border rounded-xl'> 
+      <h1 className="text-xl font-bold text-left ">Sports Clubs in Rohini</h1>
+      <p className="  mb-5">Badminton</p>
+    </div>  
+
+        <div className='h-[150px] mx-6 my-2 p-3 border rounded-xl '>
+        <h2 className="text-2xl font-bold mt-5 mb-5">Amenities</h2>
+
+          <div className='flex justify-evenly'>
+          <div><FontAwesomeIcon icon={faCircleCheck} /> Parking</div>    <div><FontAwesomeIcon icon={faCircleCheck} /> Toilets</div>    <div><FontAwesomeIcon icon={faCircleCheck} /> Drinking Water</div>
+          <div><FontAwesomeIcon icon={faCircleCheck} /> Waiting Area</div>       
+        </div>
+          </div>
+        
+    <div className='h-[150px] mx-6 my-2 p-3 border rounded-xl'> 
+        <h6 className="text-2xl font-bold mt-5 mb-5">Related To Power Smash Badminton Academy Rohini</h6>
+        <h2 className="text-2xl font-bold mt-5 mb-5">First Aid</h2>
+        <p className="mb-2">We provide necessary first aid and CPR certification for the users.</p>
+      </div>
+    </div>
+
                 </div>
 
                 <div className=' flex flex-col basis-1/3 items-center '>
@@ -98,8 +112,8 @@ function BookingPage() {
                               BooK
                             </div>
                            <div className=' pt-2 flex justify-between'>
-                            <div type="button" className="w-1/2 text-center  text-green bg-white hover:bg-gray-200 border cursor-pointer border border-gray-400 focus:ring-4 focus:ring-2  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 "><FontAwesomeIcon className='text-green-900 ' icon={faShareFromSquare} /> Share</div>
-                            <div type="button" className="w-1/2 text-center  text-green bg-white hover:bg-gray-200 border cursor-pointer border border-green ring-green-900 ring-offset-1 ring-1 focus:ring-2 green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Bulk Booking</div>
+                            <div type="button" className="w-1/2 text-center  text-green bg-white hover:bg-gray-200  cursor-pointer border border-gray-400  font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 "><FontAwesomeIcon className='text-green-900 ' icon={faShareFromSquare} /> Share</div>
+                            <div type="button" className="w-1/2 text-center  text-green bg-white hover:bg-gray-200  cursor-pointer border border-green ring-green-900 ring-offset-1 ring-1 focus:ring-2 green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Bulk Booking</div>
 
                            </div>
                           </div>
@@ -134,6 +148,7 @@ function BookingPage() {
 
                 </div>
         </div>
+
     </div>
     </>
   )

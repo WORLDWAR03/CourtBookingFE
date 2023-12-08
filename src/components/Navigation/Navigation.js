@@ -7,7 +7,7 @@ import {Menu, Transition} from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Fragment } from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 
 
@@ -19,16 +19,20 @@ function classNames(...classes) {
 
 function Navigation() {
 
-
-
+  const Navigate = useNavigate()
   const {user}=useSelector((state)=>state.user)
+  const {id}= useParams()
+  
 
   const [active,setActive]=useState(false)
     const showMenu=()=>{
       setActive(!active)
     }
 
-  
+  const Logout=()=>{
+    localStorage.clear()
+    Navigate('/') 
+  }
   
   return (
     <div className='z-10' >
@@ -47,9 +51,11 @@ function Navigation() {
           </a></Link> 
         </li>
         <li className='nav_item'>
+        <Link to={'/Bookings'}>
           <a href="" className='nav_link'>
-            <span aria-hidden="true"></span>Book
+            <span aria-hidden="true"></span>Bookings
           </a>
+          </Link>
         </li>
         <li className='nav_item'>
         <a href="" className='nav_link'>
@@ -142,6 +148,7 @@ function Navigation() {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={Logout}
                     type="submit"
                     className={classNames(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',

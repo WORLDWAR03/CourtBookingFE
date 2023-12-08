@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import {Menu, Transition} from '@headlessui/react';
@@ -16,8 +16,13 @@ function classNames(...classes) {
 }
 
 function MenuItems({showMenu, active}) {
-
+  const Navigate = useNavigate()
   const {user}=useSelector((state)=>state.user)
+  const Logout=()=>{
+    localStorage.clear()
+    Navigate('/') 
+  }
+  
   return (
     <div className={active ? 'flex-col flex items-center fixed inset-0 left-1/4  uppercase bg-black/40 backdrop-blur-md gap-8 justify-center md:hidden ':'hidden'} >
 
@@ -30,9 +35,11 @@ function MenuItems({showMenu, active}) {
         </Link>
         </li>
         <li className='nav_item pb-2'>
+          <Link to={'/Bookings'}>
           <a href="" className='nav_link'>
             <span aria-hidden="true"></span>Bookings
           </a>
+          </Link>
         </li>
         <li className='nav_item pb-2'>
         <a href="" className='nav_link'>
@@ -131,6 +138,7 @@ function MenuItems({showMenu, active}) {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={Logout}
                     type="submit"
                     className={classNames(
                       active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',

@@ -21,9 +21,21 @@ console.log(courts);
     },[page])
 
     const getAllCourtsData=()=>{
+      try {
         AxiosInstance.get('/vender/getAllCourtData',{params:{page}}).then((res)=>{
-        setCourts(res.data.courts)
-        })
+          setCourts(res.data.courts)
+          }).catch((res)=>{
+            if(res){
+
+            }
+          })
+          
+          
+      }
+  
+      catch (error) {
+        
+      }
     }
 
 
