@@ -36,7 +36,7 @@ function BookingPage() {
       }
       else{
         currentHour=-1
-      }   AxiosInstance.get('/users/getAvailableSlots',{params:{courtId:id,date:new Date(selectedDate),currentHour:currentHour}})
+      }   AxiosInstance.get('users/getAvailableSlots',{params:{courtId:id,date:new Date(selectedDate),currentHour:currentHour}})
       .then((res)=>{
     
        
@@ -82,31 +82,31 @@ function BookingPage() {
                          <img className='max-h-[90%] rounded w-[95%]' src={`${BASEURL}/venderImages/${courtData.image}`}/>
                       </div>
                       <div className=" flex flex-col ">
-    <div className='h-[150px] mx-6 my-2 p-3 border rounded-xl'> 
-      <h1 className="text-xl font-bold text-left ">Sports Clubs in Rohini</h1>
-      <p className="  mb-5">Badminton</p>
+    <div className='h-[100px] mx-6 my-2 p-3 border rounded-xl'> 
+      <h1 className="text-xl font-bold text-left ">Venue Type</h1>
+      <p className=" mt-2">{courtData.venueType}</p>
     </div>  
 
         <div className='h-[150px] mx-6 my-2 p-3 border rounded-xl '>
-        <h2 className="text-2xl font-bold mt-5 mb-5">Amenities</h2>
+        <h2 className="text-xl font-bold mt-5 mb-5">Amenities</h2>
 
           <div className='flex justify-evenly'>
-          <div><FontAwesomeIcon icon={faCircleCheck} /> Parking</div>    <div><FontAwesomeIcon icon={faCircleCheck} /> Toilets</div>    <div><FontAwesomeIcon icon={faCircleCheck} /> Drinking Water</div>
-          <div><FontAwesomeIcon icon={faCircleCheck} /> Waiting Area</div>       
+          <div><FontAwesomeIcon icon={faCircleCheck} className='text-green-700' /> Parking</div>    <div><FontAwesomeIcon icon={faCircleCheck} className='text-green-700'/> Toilets</div>    <div><FontAwesomeIcon icon={faCircleCheck} className='text-green-700'/> Drinking Water</div>
+          <div><FontAwesomeIcon icon={faCircleCheck} className='text-green-700'/> Waiting Area</div>             <div><FontAwesomeIcon icon={faCircleCheck} className='text-green-700'/> First Aid</div>       
+    
         </div>
           </div>
         
     <div className='h-[150px] mx-6 my-2 p-3 border rounded-xl'> 
-        <h6 className="text-2xl font-bold mt-5 mb-5">Related To Power Smash Badminton Academy Rohini</h6>
-        <h2 className="text-2xl font-bold mt-5 mb-5">First Aid</h2>
-        <p className="mb-2">We provide necessary first aid and CPR certification for the users.</p>
+        <p className="text-xl font-bold mt-5 mb-5">Related To {courtData.businessName}</p>
+        <p className="mb-2">Sports Clubs in Rohini,We provide necessary first aid and CPR certification for the users.</p>
       </div>
     </div>
 
                 </div>
 
                 <div className=' flex flex-col basis-1/3 items-center '>
-                          <div className='items-center mt-24 px-2 w-[90%] '>
+                          <div className='items-center  mt-10 md:mt-24 px-2 w-[90%] '>
 
                             <div type="button" className="  focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900 text-center">
                               BooK

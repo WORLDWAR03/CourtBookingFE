@@ -1,9 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navigation from '../navigation/Navigation'
 import './myBooking.css'
 import AxiosInstance from '../../config/axiosInstance'
+import UpComingBookings from '../upComingBookings/UpComingBookings'
+import {Menu, Transition} from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { Fragment } from 'react'
+
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
 
 function MyBooking() {
+  const [bookings, setBookings]= useState([])
  useEffect(()=>{
    getMyBookings()
  },[])
@@ -12,20 +22,59 @@ function MyBooking() {
     try {
        AxiosInstance.get('/users/getMyBookings').then((res)=>{
         console.log(res);
+        setBookings(res.data)
+        console.log(bookings);
+
        })
     } catch (error) {
         
     }
  }
+
+ const getPreviousBookings=()=>{
+    try {
+      AxiosInstance.get('/users/getPreviousBookings').then((res)=>{
+        console.log(res);
+        setBookings(res.data)
+      })
+        
+    } catch (error) {
+      
+    }
+ }  
   return (
 
     <>
     <div className='nav'>
         <Navigation/>
     </div>
-    <div className='min-h-full min-w-full  items-ceneter  mt-6  gap-4  grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 md:max-w-7xl bg-[#fff] overflow-x-hidden' >
+    <div className=' m-w-full items-center flex justify-between '>
+      <div>
+      <h3 className='text-3xl font-bold m-6 mt-8 '>Bookings :</h3>
+      </div>
 
-    hellow
+      <div className='py-2 font-md m-6 mt-8'>
+        <select className='w-auto' >
+          <option selected
+          onClick={getMyBookings}>
+           Up Coming
+          </option>          
+          <option onClick={()=>getPreviousBookings()} >Previous Bookings</option>
+        </select>
+      </div>
+
+    </div>
+    <div className='min-h-full min-w-full  items-ceneter  mt-3 gap-4  grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-2 md:max-w-7xl bg-[#fff] overflow-x-hidden' >
+
+      
+
+     {
+      bookings.map(data=><UpComingBookings key={data._id} data={data}/>
+      )
+     }
+    
+     
+    
   
     </div>
     </>

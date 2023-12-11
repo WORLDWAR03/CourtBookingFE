@@ -134,9 +134,11 @@ function IntialCourtData() {
     icon: "success",
     title: "Schedules Added Successfully",
     showConfirmButton: false,
-    timer: 2000
+    timer: 1000,
   });
-  navigate('/myCourts') 
+  
+  
+
 
 })
 
