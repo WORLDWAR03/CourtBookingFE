@@ -85,6 +85,7 @@ if(Object.keys(validationErrors).length === 0){
     icon: "success",
     title: "Signed in successfully"
   });
+  setBoxName('login')
 }
 
 }

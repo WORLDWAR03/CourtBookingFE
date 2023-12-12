@@ -6,11 +6,10 @@ import UpComingBookings from '../upComingBookings/UpComingBookings'
 import {Menu, Transition} from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Fragment } from 'react'
+import { Button } from "@material-tailwind/react";
+ 
 
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 function MyBooking() {
   const [bookings, setBookings]= useState([])
@@ -54,13 +53,10 @@ function MyBooking() {
       </div>
 
       <div className='py-2 font-md m-6 mt-8'>
-        <select className='w-auto' >
-          <option selected
-          onClick={getMyBookings}>
-           Up Coming
-          </option>          
-          <option onClick={()=>getPreviousBookings()} >Previous Bookings</option>
-        </select>
+       
+        <Button variant="filled" className='m-1' onClick={getMyBookings}>UpComing</Button>
+        <Button variant="gradient"className='m-1' onClick={getPreviousBookings}>Previous Bookings</Button>
+      <Button variant="outlined"className='m-1'>Cancelled</Button>
       </div>
 
     </div>

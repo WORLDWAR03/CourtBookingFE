@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import './login.css'
 import loginPic from '../../assets/omg.jpeg'
 import google from '../../assets/google.png'
-
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { setUser } from '../../redux/userSlice'
 import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2'
@@ -106,7 +105,7 @@ s
         {errors.password && <span>{errors.password}</span>}
         <button className='hover:scale-105 duration-300 bg-[#2d6a4f] rounded-xl text-white py-2' onClick={makeLogin}>Login</button>
     </form>
-    <div className='mt-7 grid grid-cols-3 flex  items-center text-gray-400'>
+    <div className='mt-7 grid grid-cols-3  items-center text-gray-400'>
         <hr className='border-gray-400'></hr>
          <p className='text-center '>OR</p>
         <hr className='border-gray-400'></hr>
@@ -114,7 +113,7 @@ s
 
     <button className='hover:scale-105 duration-300 bg-white border py-2 w-full rounded-xl mt-3 flex justify-center items-center text-5m'><img className='w-6' src={google} /> Login with Google</button>
 
-    <p className='mt-1 text-xs border-b py-2'>forget your password</p>
+    <Link to={'/forgot-password'}><p className='mt-1 text-xs text-black border-b py-2'>forget your password</p></Link>
 
     <div className='text-xs flex justify-between mt-2 items-center'>
         <p>Dont have an account?</p>
