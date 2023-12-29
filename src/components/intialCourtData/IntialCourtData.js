@@ -33,6 +33,8 @@ function IntialCourtData() {
     endDate: "",
   });
 
+
+
   const dispatch = useDispatch()
 
   useEffect(()=>{
@@ -60,10 +62,7 @@ function IntialCourtData() {
    }else{
     setMinEndDate(intialDate)
    }
-  },[courtTiming.startDate,intialDate,]);
-
-
-  const addNewTime = (element, index) => {
+  },[courtTiming.startDate,intialDate,]);  const addNewTime = (element, index) => {
     const check = selectedTimings.filter(
       (timeObj) => timeObj.id === element.id
     );
@@ -81,6 +80,7 @@ function IntialCourtData() {
     setFilterTimings(filtaredData);
   };
 
+  
   const removeItems = (element) => {
     const removed = selectedTimings.filter(
       (timeObj) => timeObj.id !== element.id
@@ -128,7 +128,10 @@ function IntialCourtData() {
      cost:costData,
      courtId:id,
     }
-}).then((res)=>{
+    
+}
+).then((res)=>{
+  navigate('/myCourts')
   Swal.fire({
     position: "center",
     icon: "success",
@@ -158,7 +161,7 @@ function IntialCourtData() {
   return (
     <>
       <div className="nav">
-        <Navigation />
+        
       </div>
       <div className="wrapper ">
         <div className="headers relative">
@@ -193,7 +196,7 @@ function IntialCourtData() {
           
           <div className="modal w-[1/5] bg-[#2c6e49] ">
           
-            <Modal data={sigleViewData}>
+            <Modal data={sigleViewData} addCourtTimings={addCourtTimings}>
               <div>
                 <div className="px-7 overflow-y-auto">
                   <label className="block text-sm font-medium text-left text-gray-800">
@@ -249,6 +252,7 @@ function IntialCourtData() {
                     id="input-label"
                     className="py-3 px-4 block w-full  border rounded-md text-sm focus:border-[#2c6e49] focus:ring-[#2c6e49] text-gray-600"
                     placeholder=""
+                    required
                   />
                 </div>
 
@@ -295,19 +299,7 @@ function IntialCourtData() {
                 </div>
 
                 <div className="flex justify-end items-center gap-x-2 py-4 px-7  ">
-                  <button
-                    type="button"
-                    className="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-gray-300 font-medium bg-white text-[#1b4332] shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-black transition-all text-sm  dark:hover:bg-[#192f27]  dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
-                    data-hs-overlay="#hs-focus-management-modal"
-                  >
-                    Close
-                  </button>
-                  <button
-                    onClick={addCourtTimings}
-                    className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-[#2c6e49] text-white hover:bg-[#276040] focus:outline-none focus:ring-2  focus:ring-offset-2 transition-all text-sm  "
-                  >
-                    Create Schedule
-                  </button>
+
                 </div>
               </div>
             </Modal>

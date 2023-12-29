@@ -15,7 +15,7 @@ function CourtCard({data}) {
     
    
 
-  <div  className=" align-center sm:max-w-sm md:max-w-xl md:max-h-[32rem] w-full lg:max-w-full cursor-pointer lg:flex rounded-lg bg-[#d8f3dc]  shadow-lg" onClick={()=>openThisCard()}>
+  <div  className=" align-center sm:max-w-sm md:max-w-xl md:max-h-[32rem] w-full lg:max-w-full cursor-pointer lg:flex rounded-lg bg-white  shadow-lg" onClick={()=>openThisCard()}>
     <div  className="h-48 lg:h-auto md:h-52 lg:w-56 flex-none bg-cover rounded-t-lg lg:rounded-t-none   text-center overflow-hidden  items-end "  title="court image ">
         <img className='lg:h-full lg-w-full  rounded-l-lg' src={`${BASEURL}/venderImages/${data.image}`}/>
     </div>

@@ -5,6 +5,7 @@ import AxiosInstance from '../config/axiosInstance'
 import Loader from '../components/loader/Loader'
 import { useDispatch } from 'react-redux'
 import { setOpenLoader } from '../redux/userSlice'
+import Footer from '../components/footer/Footer'
 
 function MyCourtPage() {
 
@@ -33,14 +34,14 @@ function MyCourtPage() {
 
 
         <Navigation />
-        <div className=' sm:grid-cols-1 z-0  pt-36 bg-[#fff]'>
-
+        <div className=' sm:grid-cols-1 z-0  pt-36 bg-[#fff] min-h-[700px]'>
         {courtData.map(court=>
          <CourtCard key={court._id} data={court}/>
-                       )}
+        )}
        </div>
 
        <Loader/>
+       <Footer/>
     </>
   )
 }

@@ -7,6 +7,8 @@ import UserWelcome from '../components/welcomepage/UserWelcome'
 import { useSelector } from 'react-redux'
 import CardsAndEvents from '../components/HomePageViews/CardsAndEvents'
 import  Pagination  from '../components/pagination/Pagination'
+import Footer from '../components/footer/Footer'
+import Loader from '../components/loader/Loader'
 
 
 
@@ -19,6 +21,7 @@ function Home() {
         <Navigation />
         {user.role===2 ?<WelcomePage/>:<UserWelcome/>} 
         <CardsAndEvents/>
+        <Footer/>
         
         
         

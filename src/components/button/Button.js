@@ -8,6 +8,7 @@ function Button({slot}) {
    const [modal, setModal] = useState(false)
    const [button,setButton] = useState(false)
    const [date, setDate] = useState('')
+
    const Toast = Swal.mixin({
     toast: true,
     position: 'center',
@@ -19,6 +20,19 @@ function Button({slot}) {
     timer: 1500,
     timerProgressBar: true,
   })
+
+  const Toasts = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 4000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+  
 
   const toggleModal =() =>{
     setModal(!modal)
@@ -95,10 +109,11 @@ function Button({slot}) {
               const result = await AxiosInstance.post(BASEURL+"/payment/success", data);
               setModal(false)
               setButton(true)
-              alert(result.data.msg);
+              Toasts.fire({
+                icon: "success",
+                title: `${result.data.msg}`
+              });
               
-              
-            
           },
           prefill: {
               name: "PLEY",
@@ -149,7 +164,7 @@ function loadScript(src) {
       {modal &&(
             <div className='modaal'>
             <div className='overlay' onClick={toggleModal}></div>
-             <div className='modal-content '>
+             <div className='modal-content'>
                   <div className='fl text-left mb-2'> <div className="font-xl">Date:</div> {slot?.date}</div>
                   <div className='fl text-left mb-2'> <div className="font-xl">Court Name:</div> {slot?.courts[0]?.businessName}</div>
                   <div className='fl text-left mb-2'> <div className="font-xl">Time:</div> {slot?.slot?.name}</div>

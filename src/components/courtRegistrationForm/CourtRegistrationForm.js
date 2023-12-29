@@ -45,7 +45,7 @@ function CourtRegistrationForm() {
             title: "Court Registred Successfully",
             showConfirmButton: false,
             timer: 2000
-          });;
+          });
           navigate('/myCourts')
         })
         .catch((res) => {

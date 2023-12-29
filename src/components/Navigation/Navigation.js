@@ -37,7 +37,7 @@ function Navigation() {
   return (
     <div className='z-10' >
     <nav className='nav fixed bg-[#1b4332]  w-full md:flex justify-between p-4 mb-48 items-center'>
-      <a href='' className='brand text-2xl font-bold text-center block'>PLEY</a>
+      <a href='/home' className='brand text-2xl font-bold text-center block'>PLEY</a>
       
       <div className='absolute right-6 md:hidden '>
       <FontAwesomeIcon icon={faBars} className='h-6 text-white cursor-pointer scale-100' onClick={showMenu} />
@@ -71,7 +71,7 @@ function Navigation() {
           </a>
         </li>
 
-        {user.role ===2 &&  <li className='nav_item'>
+        {user.role === 2 &&  <li className='nav_item'>
           <Link to={'/myCourts'}>
         <a href="" className='nav_link'>
             Mycourt

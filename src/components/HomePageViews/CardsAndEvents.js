@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Card from '../common/card/Card'
 import Event from '../common/Events/Event'
 import AxiosInstance from '../../config/axiosInstance'
-import { Button, IconButton } from "@material-tailwind/react";
+import { Button, IconButton, Spinner } from "@material-tailwind/react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
+import Loader from '../loader/Loader';
 
 function CardsAndEvents() {
 
@@ -13,6 +14,7 @@ console.log(page);
 
 
 const [courts,setCourts]=useState([])
+const [loader, setLoader]=useState(false)
 
 console.log(courts);
     useEffect(()=>{
@@ -21,6 +23,7 @@ console.log(courts);
     },[page])
 
     const getAllCourtsData=()=>{
+      setLoader(true)
       try {
         AxiosInstance.get('/vender/getAllCourtData',{params:{page}}).then((res)=>{
           setCourts(res.data.courts)
@@ -30,7 +33,7 @@ console.log(courts);
             }
           })
           
-          
+          setLoader(false)
       }
   
       catch (error) {
@@ -67,7 +70,8 @@ console.log(courts);
   };
   return (
     <>
-    <div className='min-h-full min-w-full  items-ceneter  mt-6  gap-4  grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 md:max-w-7xl bg-[#fff] overflow-x-hidden' >
+      {loader ? <Loader/>:''}
+     <div className='min-h-full min-w-full  items-ceneter  mt-6  gap-4  grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 md:max-w-7xl bg-[#fff] overflow-x-hidden' >
 
         {
           courts.map((element)=>

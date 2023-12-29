@@ -139,8 +139,10 @@ function BookingPage() {
                               <Button slot ={element}/>
                          )}</div>
                           </div>    
-                          <div className='h-[200px] my-1 border border-1 border-gray-400 rounded w-[90%]'>
-                            eeeeeeeee
+                          <div className='min-h-[200px] my-1 border border-1 items-center overflow-y-scroll  border-gray-400 rounded w-[90%]'>
+                            <div className='justify-center m-3 '>
+                            {courtData.aboutVenue}
+                            </div>
                           </div>
 
                          

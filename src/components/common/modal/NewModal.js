@@ -7,7 +7,7 @@ import {
   DialogFooter,
 } from "@material-tailwind/react";
  
-function NewModal() {
+function NewModal({cancell}) {
 
  const [open, setOpen] = useState(false);
 
@@ -16,13 +16,13 @@ function NewModal() {
  
   return (
     <>
-      <Button onClick={handleOpen} variant="gradient">
-        Schedule Maker
+      <Button onClick={handleOpen} className="bg-green-800 w-full">
+        Cancel Schedule
       </Button>
       <Dialog open={open} handler={handleOpen}>
-        <DialogHeader>Its a simple dialog.</DialogHeader>
+        <DialogHeader>Cancell Booking</DialogHeader>
         <DialogBody>
-        jjjjjjjjjjjjjjjjjjjj
+        Do you want to cancell this schedule?
         </DialogBody>
         <DialogFooter>
           <Button
@@ -34,7 +34,7 @@ function NewModal() {
             <span>Cancel</span>
           </Button>
           <Button variant="gradient" color="green" onClick={handleOpen}>
-            <span>Confirm</span>
+            <span onClick={cancell}>Confirm</span>
           </Button>
         </DialogFooter>
       </Dialog>

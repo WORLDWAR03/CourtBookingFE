@@ -4,6 +4,7 @@ import Navigation from '../components/navigation/Navigation'
 import IntialCourtData from '../components/intialCourtData/IntialCourtData'
 import ScheduleTable from '../components/table/ScheduleTable'
 import Modal from '../components/common/modal/Modal'
+import Footer from '../components/footer/Footer'
  
 
 
@@ -13,11 +14,12 @@ function SingleCourtViewPage(){
 
         
       
-        
+       <Navigation/>
         <IntialCourtData />
     
 
         <ScheduleTable />
+        <Footer/>
         
     
         {/* schedule table */}

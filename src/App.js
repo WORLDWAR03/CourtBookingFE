@@ -27,14 +27,14 @@ function App() {
     </Route>
      <Route element={<Authorization/>}>
      <Route path='/home' element={<Home />}/>  
-     <Route path='/myCourts' element={<MyCourtPage/>}/>
      <Route path='/SingleCardView/:id'element={ <SingleCardView/>}/>
      <Route path='/Bookings' element={<MyBookingPage/>}/>
      <Route path='/cancelpage/:id' element={<CancelBookingPage/>}/>
      
      </Route>
      <Route element={<VenderAuth/>}>
-     <Route path='/SingleCourtView/:id' element={ <SingleCourtViewPage />}/>
+     <Route path='/myCourts' element={<MyCourtPage/>}/>
+     <Route path='/SingleCourtView/:id' element={<SingleCourtViewPage />}/>
      <Route path='/courtRegistration' element={<CourtRegistration/>}/>
      </Route>
 
