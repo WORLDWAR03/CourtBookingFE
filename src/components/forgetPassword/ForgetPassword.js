@@ -43,7 +43,6 @@ function ForgotPassword() {
     const makeLogin =()=>{
         try {
             axios.post('http://localhost:8080/users/forget-password',login).then((response)=>{
-                console.log(response);  
                 if(response.data.status=== 'user not existed'){
                     Swal.fire({
                         icon: "question",

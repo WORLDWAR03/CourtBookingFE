@@ -10,13 +10,11 @@ function CardsAndEvents() {
 
 const [page,setPage]=useState(1)  
 const [count,setCount]=useState(0)
-console.log(page);
 
 
 const [courts,setCourts]=useState([])
 const [loader, setLoader]=useState(false)
 
-console.log(courts);
     useEffect(()=>{
        getAllCourtsData()
 

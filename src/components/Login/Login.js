@@ -50,7 +50,6 @@ function Login({setBoxName}) {
     const makeLogin =()=>{
         try {
             axios.post('http://localhost:8080/auth/login',login).then((response)=>{
-                console.log(response);  
                 if(response.data.login){
                     localStorage.setItem('autherisation',response?.data?.token)
                     dispatch(setUser(response?.data.user))

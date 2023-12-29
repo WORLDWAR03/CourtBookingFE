@@ -20,15 +20,12 @@ function CourtRegistrationForm() {
   const [courtPic, setCourtPic] = useState({ file: "" });
 
   const handleFileChange = (e) => {
-    console.log(e.target.files[0]);
     setCourtPic({ file: e.target.files[0] });
   };
 
   const navigate=useNavigate()
   const handleSave = () => {
     try {
-      console.log(registerData, "registerData");
-
       let fileData = new FormData();
       fileData.append("image", courtPic.file);
 

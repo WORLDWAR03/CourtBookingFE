@@ -56,9 +56,6 @@ function BookingPage() {
     }
   }
 
- 
-  console.log(courtSchedules,'ere is meee');
-
   
 
 

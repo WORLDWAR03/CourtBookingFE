@@ -95,18 +95,15 @@ function IntialCourtData() {
 
   const { id } = useParams();
 
-  console.log(id);
   useEffect(() => {
     try {
       AxiosInstance.get("vender/getSigleCourtViewData", {
         params: { courtId: id },
       })
         .then((resp) => {
-          console.log();
           setSigleViewData(resp.data);
         })
         .catch((err) => {
-          console.log(err);
         });
 
         

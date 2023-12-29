@@ -20,9 +20,7 @@ function MyBooking() {
  const getMyBookings =()=>{
     try {
        AxiosInstance.get('/users/getMyBookings').then((res)=>{
-        console.log(res);
         setBookings(res.data)
-        console.log(bookings);
 
        })
     } catch (error) {
@@ -33,7 +31,6 @@ function MyBooking() {
  const getPreviousBookings=()=>{
     try {
       AxiosInstance.get('/users/getPreviousBookings').then((res)=>{
-        console.log(res);
         setBookings(res.data)
       })
         

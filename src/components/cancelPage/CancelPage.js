@@ -38,7 +38,6 @@ function CancelPage() {
     try {
       AxiosInstance.get("/users/getThisScheduleData", { params: { id } }).then(
         (response) => {
-          console.log(response);
           setPageData(response.data[0]);
           setBookedDate(response.data[0].date);
         }
